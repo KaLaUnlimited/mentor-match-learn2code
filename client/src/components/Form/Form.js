@@ -1,6 +1,6 @@
 import React from "react";
 import { FormControl, HelpBlock, Button, FormGroup, ControlLabel, Checkbox, Radio } from 'react-bootstrap';
-
+import axios from "axios";
 // function FieldGroup({ id, label, help, ...props }) {
 //     return (
 //         <FormGroup controlId={id}>
@@ -24,18 +24,14 @@ import { FormControl, HelpBlock, Button, FormGroup, ControlLabel, Checkbox, Radi
  //    console.log(error);
  //  });
 // };
-function log(event,err){
-  event.preventDefault();
-  if(err) throw err;
-  alert("user name"+this.state.username);
-}
 
 export default class Form extends React.Component {
 constructor(props){
   super(props);
   this.state ={
     username:'',
-    email: ''
+    email: '',
+
   };
    this.handleSubmit = this.handleSubmit.bind(this);
 }
@@ -44,6 +40,7 @@ constructor(props){
 handleInputChange = event =>{
   const{name,value}= event.target;
   this.setState({
+     checked:true,
       [name]: value
     });
 }
@@ -54,11 +51,32 @@ handleSubmit(event,err){
   const target = event.target;
   const value = target.type === 'checkbox' ? target.checked : target.value;
   const name = target.name;
-  if (err) throw err;
-  console.log(this.state.username);
-  console.log(this.state.email);
+// // for(var i=0;i<this.state.value;i++){
+// //
+// //  if(this.state.checked === true){
+// //    console.log(this.state.checked[i]);
+// //  }
+//  }
 
+const userpathinfo=
+{username:this.state.username,
+  email:this.state.username
 }
+
+axios.post('api/dashboard', userpathinfo)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  console.log(userpathinfo);
+};
+
+
+
+
+
 
 
 
@@ -85,15 +103,15 @@ handleSubmit(event,err){
                 />
 
                 <FormGroup>
-                    <Checkbox>HTML</Checkbox>
-                    <Checkbox>CSS</Checkbox>
-                    <Checkbox>JavaScript</Checkbox>
-                    <Checkbox>jQuery</Checkbox>
-                    <Checkbox>Git</Checkbox>
-                    <Checkbox>MongoDB</Checkbox>
-                    <Checkbox>Express.js</Checkbox>
-                    <Checkbox>Node.js</Checkbox>
-                    <Checkbox>React.js</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="HTML" value='HTML'>HTML</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange}  name="CSS" value='CSS' >CSS</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="Javascript" value='JavaScript' >JavaScript</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="jQuery" value='jQuery'>jQuery</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="Git" value='Git'>Git</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="MongoDB" value='MongoDB' >MongoDB</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="Express.js" value='Express.js' >Express.js</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="Node.js" value='Node.js' >Node.js</Checkbox>
+                    <Checkbox type="checkbox" onChange={this.handleInputChange} name="React" value='React' >React.js</Checkbox>
                 </FormGroup>
 
                 <Button onClick={this.handleSubmit} type="submit">Submit</Button>

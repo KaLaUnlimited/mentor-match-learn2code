@@ -24,6 +24,13 @@ router.route("/")
 
 });
 
+router.route("/dashboard")
+.post(function(req,res,err){
+  if (err) throw err;
+  console.log(req.body);
+  res.json(req.body);
+});
+
 
 // , function(req,res){
   // uri = "mongodb://localhost/mentor-match"
