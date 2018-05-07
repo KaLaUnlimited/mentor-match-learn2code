@@ -24,6 +24,11 @@ import { FormControl, HelpBlock, Button, FormGroup, ControlLabel, Checkbox, Radi
  //    console.log(error);
  //  });
 // };
+function log(event,err){
+  event.preventDefault();
+  if(err) throw err;
+  alert("user name"+this.state.username);
+}
 
 export default class Form extends React.Component {
 constructor(props){
@@ -40,9 +45,10 @@ constructor(props){
 handleSubmit(event,err){
   event.preventDefault();
   const target = event.target;
+  const value = target.type === 'checkbox' ? target.checked : target.value;
   const name = target.name;
   if (err) throw err;
-  console.log(name);
+  console.log(this.state.username);
   this.setState({
       [name]: value
     });
@@ -67,7 +73,7 @@ handleSubmit(event,err){
                     type="email"
                     name="email"
                     value={this.state.email}
-                    onChange={this.handleSubmit}
+
                     label="Email address"
                     placeholder="Enter email"
                 />
@@ -84,7 +90,7 @@ handleSubmit(event,err){
                     <Checkbox>React.js</Checkbox>
                 </FormGroup>
 
-                <Button type="submit">Submit</Button>
+                <Button onSubmit={this.log} type="submit">Submit</Button>
             </form>
         );
     }
