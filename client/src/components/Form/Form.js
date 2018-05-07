@@ -9,7 +9,20 @@ function FieldGroup({ id, label, help, ...props }) {
             {help && <HelpBlock>{help}</HelpBlock>}
         </FormGroup>
     );
-}
+};
+
+ function sendtoDatab(e){
+   e.preventDefault();
+   alert("This value"+this.value);
+ // userInput={}
+ //  axios.post('api/path', formControlsText, formControlsEmail)
+ //  .then(function(response){
+ //    console.log(response);
+ //  })
+ //  .catch(function(error){
+ //    console.log(error);
+ //  });
+};
 
 export default class Form extends React.Component {
 
@@ -19,6 +32,7 @@ export default class Form extends React.Component {
                 <FieldGroup
                     id="formControlsText"
                     type="text"
+                    value={this.value}
                     label="Username"
                     placeholder="Enter username"
                 />
@@ -30,23 +44,20 @@ export default class Form extends React.Component {
                 />
 
                 <FormGroup>
-                    <Checkbox>HTML</Checkbox> 
+                    <Checkbox>HTML</Checkbox>
                     <Checkbox>CSS</Checkbox>
                     <Checkbox>JavaScript</Checkbox>
-                    <Checkbox>jQuery</Checkbox> 
+                    <Checkbox>jQuery</Checkbox>
                     <Checkbox>Git</Checkbox>
                     <Checkbox>MongoDB</Checkbox>
-                    <Checkbox>Express.js</Checkbox> 
+                    <Checkbox>Express.js</Checkbox>
                     <Checkbox>Node.js</Checkbox>
                     <Checkbox>React.js</Checkbox>
-                </FormGroup>             
+                </FormGroup>
 
-                <Button type="submit">Submit</Button>
+                <Button onclick={sendtoDatab} type="submit">Submit</Button>
             </form>
         );
     }
 
 }
-
-
-
