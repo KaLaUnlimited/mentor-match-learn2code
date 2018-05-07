@@ -11,9 +11,10 @@ function FieldGroup({ id, label, help, ...props }) {
     );
 };
 
- function sendtoDatab(e){
-   e.preventDefault();
-   alert("This value"+this.value);
+ // function sendtoDatab(e ,err){
+ //   e.preventDefault();
+ //   if (err) throw err;
+ //   alert("This value"+this.value);
  // userInput={}
  //  axios.post('api/path', formControlsText, formControlsEmail)
  //  .then(function(response){
@@ -22,23 +23,42 @@ function FieldGroup({ id, label, help, ...props }) {
  //  .catch(function(error){
  //    console.log(error);
  //  });
-};
+// };
 
 export default class Form extends React.Component {
+constructor(){
+  super();
+  this.state ={
+    username:'',
+    email: ''
+  }
+  // this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+
+
+handleSubmit(event,err){
+  event.preventDefault();
+  if (err) throw err;
+  console.log(event.value);
+
+}
+
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <FieldGroup
                     id="formControlsText"
                     type="text"
-                    value={this.value}
+                    name="username"
                     label="Username"
                     placeholder="Enter username"
                 />
                 <FieldGroup
                     id="formControlsEmail"
                     type="email"
+                    name="email"
                     label="Email address"
                     placeholder="Enter email"
                 />
@@ -55,7 +75,7 @@ export default class Form extends React.Component {
                     <Checkbox>React.js</Checkbox>
                 </FormGroup>
 
-                <Button onclick={sendtoDatab} type="submit">Submit</Button>
+                <Button type="submit">Submit</Button>
             </form>
         );
     }
