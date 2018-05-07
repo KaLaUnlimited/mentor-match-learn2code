@@ -1,15 +1,15 @@
 import React from "react";
 import { FormControl, HelpBlock, Button, FormGroup, ControlLabel, Checkbox, Radio } from 'react-bootstrap';
 
-function FieldGroup({ id, label, help, ...props }) {
-    return (
-        <FormGroup controlId={id}>
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl {...props} />
-            {help && <HelpBlock>{help}</HelpBlock>}
-        </FormGroup>
-    );
-};
+// function FieldGroup({ id, label, help, ...props }) {
+//     return (
+//         <FormGroup controlId={id}>
+//             <ControlLabel>{label}</ControlLabel>
+//             <FormControl {...props} />
+//             {help && <HelpBlock>{help}</HelpBlock>}
+//         </FormGroup>
+//     );
+// };
 
  // function sendtoDatab(e ,err){
  //   e.preventDefault();
@@ -26,39 +26,48 @@ function FieldGroup({ id, label, help, ...props }) {
 // };
 
 export default class Form extends React.Component {
-constructor(){
-  super();
+constructor(props){
+  super(props);
   this.state ={
     username:'',
     email: ''
-  }
-  // this.handleSubmit = this.handleSubmit.bind(this);
+  };
+   this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 
 
 handleSubmit(event,err){
   event.preventDefault();
+  const target = event.target;
+  const name = target.name;
   if (err) throw err;
-  console.log(event.value);
-
+  console.log(name);
+  this.setState({
+      [name]: value
+    });
 }
+
 
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <FieldGroup
+            <form>
+                <input
                     id="formControlsText"
                     type="text"
                     name="username"
+                    value={this.state.username}
+                    onChange={this.handleSubmit}
                     label="Username"
                     placeholder="Enter username"
                 />
-                <FieldGroup
+                <input
                     id="formControlsEmail"
                     type="email"
                     name="email"
+                    value={this.state.email}
+                    onChange={this.handleSubmit}
                     label="Email address"
                     placeholder="Enter email"
                 />
