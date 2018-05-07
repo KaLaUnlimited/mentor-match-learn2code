@@ -41,6 +41,13 @@ constructor(props){
 }
 
 
+handleInputChange = event =>{
+  const{name,value}= event.target;
+  this.setState({
+      [name]: value
+    });
+}
+
 
 handleSubmit(event,err){
   event.preventDefault();
@@ -49,9 +56,8 @@ handleSubmit(event,err){
   const name = target.name;
   if (err) throw err;
   console.log(this.state.username);
-  this.setState({
-      [name]: value
-    });
+  console.log(this.state.email);
+
 }
 
 
@@ -64,7 +70,7 @@ handleSubmit(event,err){
                     type="text"
                     name="username"
                     value={this.state.username}
-                    onChange={this.handleSubmit}
+                    onChange={this.handleInputChange}
                     label="Username"
                     placeholder="Enter username"
                 />
@@ -73,7 +79,7 @@ handleSubmit(event,err){
                     type="email"
                     name="email"
                     value={this.state.email}
-
+                    onChange={this.handleInputChange}
                     label="Email address"
                     placeholder="Enter email"
                 />
@@ -90,7 +96,7 @@ handleSubmit(event,err){
                     <Checkbox>React.js</Checkbox>
                 </FormGroup>
 
-                <Button onSubmit={this.log} type="submit">Submit</Button>
+                <Button onClick={this.handleSubmit} type="submit">Submit</Button>
             </form>
         );
     }
