@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ResourceCard from "../components/ResPage/ResourceCard";
+import techlogo from "../tech_image.json";
 import Footer from "../components/Footer";
 
 class Resources extends Component {
@@ -6,7 +8,12 @@ class Resources extends Component {
     return (
       <div className="resources">
         <div>
-          <p>Placeholder for resource pages!</p>
+          {techlogo.map(logo => (
+            <ResourceCard 
+              key={logo.id}
+              image={logo.image}
+            />
+          ))}
         </div>
 
         <Footer />

@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "HTML logo", 
+        "image": "./images/html_logo.png"
+    },  
+    {
+        "id": 2, 
+        "image": "./images/css_logo.png"
+    },
+    {
+        "id": 3, 
+        "image": "./images/jQuery_logo.png"
+    },
+    {
+        "id": 4, 
+        "image": "./images/node_log.png"
+    }, 
+    {
+        "id": 5, 
+        "image": "./images/express_logo.png"
+    }, 
+    {
+        "id": 6, 
+        "image": "./images/mongo_logo.png"
+    }
+]
