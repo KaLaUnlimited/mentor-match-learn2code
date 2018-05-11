@@ -18,10 +18,13 @@ class TechPath extends React.Component {
             <Interests auth={this.props.auth}/>
             
           </div>
-          <div className="panel-body">
-          {/* testing*/}
+            <div className="panel-body">
+              <ul>
+                {/* <li>{Tech Selections should go here}</li> */}
+              </ul>
           
-          </div>
+          
+            </div>
         </div>
       </div>
     )
