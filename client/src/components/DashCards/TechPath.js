@@ -7,10 +7,38 @@ import API from "../../utils/API";
 
 
 class TechPath extends React.Component {
-  //add state
 
+state = {
+  technologies: {}
+}
+
+  componentDidMount() {
+    this.loadPreferences();
+  }
+
+  loadPreferences = () => {
+    console.log("KLKLKLKL")
+    //const email = this.props.auth.grabInfo().email
+    //  email.toString();
+    // console.log(email )
+    const d = {
+      email: 'jones.nadia.l@gmail.com'
+    }
+    API.userPreference(d).then(res => {
+      console.log("front end preferences has been sent and received!!Preferences below:");
+      console.log(res.data);
+      this.setState({
+        technologies: res.data
+      });
+    })
+      .catch(err => console.log("fail"));
+    /*  }); */
+  };
   
   render() {
+    
+   
+    
     return (
       <div>
         <div className="panel panel-default">
@@ -20,7 +48,9 @@ class TechPath extends React.Component {
             
           </div>
           <div className="panel-body">
-            <UserTechList />
+            <UserTechList
+            tech = {this.state.technologies[0]}
+             />
           
           </div>
         </div>
