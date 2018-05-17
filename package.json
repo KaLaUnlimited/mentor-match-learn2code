@@ -6,7 +6,6 @@
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
-    "prestart": "start mongod && sleep 3",
     "start": "concurrently \"nodemon server.js\" \"npm run client\" \"yarn seed scripts/usersSeedDB.js\"",
     "build": "node scripts/build.js",
     "seed": "node scripts/usersSeedDB.js",
